@@ -85,6 +85,23 @@ def cmd_run(args):
     print(f"启动: {args.name}")
 
 
+# ---- 启动全部 ----
+def cmd_run_all(args):
+    data = load()
+    if not data:
+        print("暂无条目")
+        return
+    for name, item in data.items():
+        try:
+            if item["type"] == "url":
+                webbrowser.open(item["path"])
+            else:
+                os.startfile(item["path"])
+            print(f"启动: {name}")
+        except Exception as e:
+            print(f"失败: {name} -> {e}")
+
+
 def build_parser():
     p = argparse.ArgumentParser(description="简易启动器")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -96,6 +113,7 @@ def build_parser():
     a.set_defaults(func=cmd_add)
 
     sub.add_parser("list", help="查").set_defaults(func=cmd_list)
+    sub.add_parser("run-all", help="启动全部").set_defaults(func=cmd_run_all)
 
     d = sub.add_parser("del", help="删")
     d.add_argument("name")
