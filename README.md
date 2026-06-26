@@ -1,6 +1,6 @@
 # Quick Workspace Launcher
 
-> 对我个人而言的 Python 期末课程设计。
+> 对我小组而言的 Python 期末课程设计。
 
 一个基于 Python 开发的轻量级命令行启动器，用于统一管理常用软件、文件夹和网页，并支持一键启动。
 
